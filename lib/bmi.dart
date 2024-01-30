@@ -76,24 +76,10 @@ class _bmiState extends State<bmi> {
                   },
                 ),
                 SizedBox(height: 30),
-                // TextFormField(
-                //   controller: age,
-                //   decoration: InputDecoration(
-                //     border: OutlineInputBorder(),
-                //     labelText: ("Enter Age"),
-                //   ),
-                //   keyboardType: TextInputType.number,
-                //   onChanged: (value){
-                //     setState(() {
-                //
-                //     });
-                //   },
-                // ),
+
                 SizedBox(height: 30),
                 ElevatedButton(onPressed: (){
                   calculateBMI();
-                //   setState(() {
-                //   });
                   Color dialogColor = Colors.pinkAccent; // Default color
                   if (bmiCategory == 'Normal weight') {
                     dialogColor = Colors.green;

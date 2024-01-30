@@ -21,6 +21,54 @@ class _calculatorState extends State<calculator> {
   {
     ctrl.clear();
   }
+  NumClick(String val)
+  {
+    if(clk)
+    {
+      num2+=val;
+      ctrl.text=num2;
+    }
+    else
+    {
+      num1+=val;
+      ctrl.text=num1;
+    }
+  }
+  void function(String operator) {
+    setState(() {
+      ctrl.text = operator;
+      optr = operator;
+      clk = true;
+    });
+  }
+  void calcOperation(){
+    switch (optr){
+      case "+":
+      ctrl.text = (double.parse(num1) + double.parse(num2)).toString();
+      break;
+      case "-":
+        ctrl.text = (double.parse(num1) - double.parse(num2)).toString();
+        break;
+      case "*":
+        ctrl.text = (double.parse(num1) * double.parse(num2)).toString();
+        break;
+      case "/":
+        ctrl.text = (double.parse(num1) / double.parse(num2)).toString();
+        break;
+      case "%":
+        double result = double.parse(num1) * double.parse(num2) / 100;
+        ctrl.text = result.toString();
+        break;
+      case "^":
+        ctrl.text = pow(double.parse(num1),double.parse(num2)).toString();
+        break;
+      case "√":
+        ctrl.text = sqrt(double.parse(num1)).toString();
+        break;
+      default:
+        break;
+    }
+  }
 
 
   @override
@@ -101,13 +149,8 @@ class _calculatorState extends State<calculator> {
                       height: MediaQuery.of(context).size.height*0.07,
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
-                        setState(() {
-                          ctrl.text= "%";
-                          optr= "%";
-                          clk =true;
-                        });
+                        function("%");
                       },
-
                           child: Text("%",
                             style: text,
                           )),
@@ -125,11 +168,7 @@ class _calculatorState extends State<calculator> {
                       height: MediaQuery.of(context).size.height*0.07,
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
-                        setState(() {
-                          ctrl.text= "/";
-                          optr= "/";
-                          clk =true;
-                        });
+                       function('/');
                       },
 
                           child: Text("/",
@@ -147,21 +186,9 @@ class _calculatorState extends State<calculator> {
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
                         setState(() {
-                          if(clk)
-                          {
-                            num2+="7";
-                            ctrl.text=num2;
-                          }
-                          else
-                          {
-                            num1+="7";
-                            ctrl.text=num1;
-                          }
-
+                          NumClick("7");
                         });
                       },
-
-
                           child: Text("7",
                             style: text,
                           )),
@@ -171,16 +198,7 @@ class _calculatorState extends State<calculator> {
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
                        setState(() {
-                         if(clk)
-                         {
-                           num2+="8";
-                           ctrl.text= num2;
-                         }
-                         else
-                         {
-                           num1+="8";
-                           ctrl.text= num1;
-                         }
+                        NumClick("8");
                        });
                       },
 
@@ -193,16 +211,7 @@ class _calculatorState extends State<calculator> {
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
                        setState(() {
-                         if(clk)
-                         {
-                           num2+="9";
-                           ctrl.text= num2;
-                         }
-                         else
-                         {
-                           num1+="9";
-                           ctrl.text= num1;
-                         }
+                         NumClick("9");
                        });
                       },
                           child: Text("9",
@@ -236,16 +245,7 @@ class _calculatorState extends State<calculator> {
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
                         setState(() {
-                          if(clk)
-                          {
-                            num2+="4";
-                            ctrl.text= num2;
-                          }
-                          else
-                          {
-                            num1+="4";
-                            ctrl.text= num1;
-                          }
+                          NumClick("4");
                         });
                       },
                           child: Text("4",
@@ -257,16 +257,7 @@ class _calculatorState extends State<calculator> {
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
                         setState(() {
-                          if(clk)
-                          {
-                            num2+="5";
-                            ctrl.text= num2;
-                          }
-                          else
-                          {
-                            num1+="5";
-                            ctrl.text= num1;
-                          }
+                          NumClick("5");
                         });
                       },
                           child: Text("5",
@@ -278,16 +269,7 @@ class _calculatorState extends State<calculator> {
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
                         setState(() {
-                          if(clk)
-                          {
-                            num2+="6";
-                            ctrl.text= num2;
-                          }
-                          else
-                          {
-                            num1+="6";
-                            ctrl.text= num1;
-                          }
+                          NumClick("6");
                         });
                       },
                           child: Text("6",
@@ -298,11 +280,7 @@ class _calculatorState extends State<calculator> {
                       height: MediaQuery.of(context).size.height*0.07,
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
-                        setState(() {
-                          ctrl.text= "-";
-                          optr= "-";
-                          clk =true;
-                        });
+                        function('-');
                       },
                           child: Text("-",
                             style: text,
@@ -319,16 +297,7 @@ class _calculatorState extends State<calculator> {
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
                         setState(() {
-                          if(clk)
-                          {
-                            num2+="1";
-                            ctrl.text= num2;
-                          }
-                          else
-                          {
-                            num1+="1";
-                            ctrl.text= num1;
-                          }
+                          NumClick("1");
                         });
                       },
                           child: Text("1",
@@ -340,16 +309,7 @@ class _calculatorState extends State<calculator> {
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
                         setState(() {
-                          if(clk)
-                          {
-                            num2+="2";
-                            ctrl.text= num2;
-                          }
-                          else
-                          {
-                            num1+="2";
-                            ctrl.text= num1;
-                          }
+                          NumClick("2");
                         });
                       },
                           child: Text("2",
@@ -361,16 +321,7 @@ class _calculatorState extends State<calculator> {
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
                        setState(() {
-                         if(clk)
-                         {
-                           num2+="3";
-                           ctrl.text= num2;
-                         }
-                         else
-                         {
-                           num1+="3";
-                           ctrl.text= num1;
-                         }
+                         NumClick("3");
                        });
                       },
                           child: Text("3",
@@ -381,11 +332,7 @@ class _calculatorState extends State<calculator> {
                       height: MediaQuery.of(context).size.height*0.07,
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
-                       setState(() {
-                         ctrl.text= "+";
-                         optr= "+";
-                         clk =true;
-                       });
+                        function('+');
                       },
                           child: Text("+",
                             style: text,
@@ -402,16 +349,7 @@ class _calculatorState extends State<calculator> {
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
                         setState(() {
-                          if(clk)
-                          {
-                            num2+="0";
-                            ctrl.text= num2;
-                          }
-                          else
-                          {
-                            num1+="0";
-                            ctrl.text= num1;
-                          }
+                          NumClick("0");
                         });
                       },
 
@@ -424,16 +362,7 @@ class _calculatorState extends State<calculator> {
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
                         setState(() {
-                          if(clk)
-                          {
-                            num2+="00";
-                            ctrl.text= num2;
-                          }
-                          else
-                          {
-                            num1+="00";
-                            ctrl.text= num1;
-                          }
+                          NumClick("00");
                         });
                       },
 
@@ -446,16 +375,7 @@ class _calculatorState extends State<calculator> {
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
                         setState(() {
-                          if(clk)
-                          {
-                            num2+=".";
-                            ctrl.text= num2;
-                          }
-                          else
-                          {
-                            num1+=".";
-                            ctrl.text= num1;
-                          }
+                          NumClick(".");
                         });
                       },
                           child: Text(".",
@@ -467,51 +387,7 @@ class _calculatorState extends State<calculator> {
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
                         setState(() {
-                          if(optr== "+")
-                          {
-                            double res =double.parse(num1)+double.parse(num2);
-
-
-                            ctrl.text = res.toString();
-                          }
-                          if(optr== "-")
-                          {
-                            double res =double.parse(num1)-double.parse(num2);
-
-                            ctrl.text = res.toString();
-                          }
-                          if(optr== "*")
-                          {
-                            double res =double.parse(num1)*double.parse(num2);
-
-                            ctrl.text = res.toString();
-                          }
-                          if(optr== "/")
-                          {
-                            double res =double.parse(num1)/double.parse(num2);
-                            ctrl.text = res.toString();
-                          }
-                          if(optr== "%")
-                          {
-                            double a= double.parse(num1);
-                            double b= double.parse(num2);
-                            double res =a*b/100;
-                            ctrl.text = res.toString();
-                          }
-                          if(optr=="√")
-                          {
-
-                            double a = double.parse(num2);
-                            double res= sqrt(a);
-                            ctrl.text=res.toString();
-                          }
-                          if(optr=="^")
-                          {
-                            double a = double.parse(num1);
-                            double b = double.parse(num2);
-                            num res=pow(a,b);
-                            ctrl.text=res.toString();
-                          }
+                          calcOperation();
                         });
                       },
                           child: Text("=",
@@ -528,11 +404,7 @@ class _calculatorState extends State<calculator> {
                       height: MediaQuery.of(context).size.height*0.07,
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
-                        setState(() {
-                          ctrl.text= "√";
-                          optr= "√";
-                          clk =true;
-                        });                      },
+                        function('√');                     },
 
                           child: Text("√",
                             style: text,
@@ -542,11 +414,7 @@ class _calculatorState extends State<calculator> {
                       height: MediaQuery.of(context).size.height*0.07,
                       width: MediaQuery.of(context).size.width*0.2,
                       child: ElevatedButton(onPressed: (){
-                        setState(() {
-                          ctrl.text= "^";
-                          optr= "^";
-                          clk =true;
-                        });
+                        function('^');
                       },
 
                           child: Text("^",
